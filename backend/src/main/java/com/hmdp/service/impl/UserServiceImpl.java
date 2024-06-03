@@ -28,6 +28,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static com.hmdp.utils.RedisConstants.*;
@@ -161,7 +162,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private User createuser(String phone) {
         //创建用户
         User user = new User();
-        user.setPhone(phone);
+//        user.setPhone(phone);
+        Random random=new Random();
+        user.setPhone(random.nextInt()%1000+"");
         user.setNickName(SystemConstants.USER_NICK_NAME_PREFIX +RandomUtil.randomString(10));
         //保存用户 insert into tb_user(phone,nick_name) values(?,?)
         save(user);
